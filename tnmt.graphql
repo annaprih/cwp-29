@@ -1,0 +1,47 @@
+type Pizza {
+  id: ID!
+  name: String
+  colories: Int
+}
+
+type Weapon {
+  id: ID!
+  name: String
+  dps: Float
+}
+
+type Turtle {
+  id: ID!
+  name: String
+  color: String
+  weapon: Weapon
+  favoritePizza: Pizza
+  secondFavoritePizza: Pizza
+}
+
+type Query {
+  weapons(limit: Int, order: String): [Weapon]
+  pizzas(limit: Int, order: String): [Pizza]
+  turtles(pizzas: [String]): [Turtle]
+  turtle(id: ID): Turtle
+  pizza(id: ID): Pizza
+  weapon(id: ID): Weapon
+  createTurtle(
+    name: String
+    color: String
+    weaponId: ID
+    favoritePizzaId: ID
+    secondFavoritePizzaId: ID
+  ): Turtle
+  updateTurtle(
+    id: ID
+    name: String
+    color: String
+    weaponId: ID
+    favoritePizzaId: ID
+    secondFavoritePizzaId: ID
+  ): Turtle
+  deleteTurtle(
+    id: ID
+  ): Turtle
+}
